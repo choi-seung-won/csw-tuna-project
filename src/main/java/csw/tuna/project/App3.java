@@ -2,6 +2,8 @@ package csw.tuna.project;
 
 import java.sql.Timestamp;
 import java.util.Scanner;
+import csw.tuna.project.*;
+
 
 public class App3 {
 
@@ -17,6 +19,8 @@ public class App3 {
   static Scanner ok = new Scanner(System.in);
 
   public static void main(String[] args) {
+    
+    
 
 
     inputs();
@@ -32,23 +36,23 @@ public class App3 {
 
     for(int i = 0; i < size; i++ ) {
       
+      ReferrenceBoard refb = new ReferrenceBoard();
+      
       count ++;
       
-      ReferrenceBoard brd = new ReferrenceBoard();
-
       System.out.print("번호: \n");
 
-      brd.number[i] = ok.nextInt();
+      refb.number = ok.nextInt();
 
       ok.nextLine();
 
       System.out.print("내용: \n");
 
-      brd.description[i] = ok.nextLine();
+      refb.description = ok.nextLine();
 
-      count++;
+//      count++;
 
-      board[i] = brd; //?
+      board[i] = refb; //?
 
       System.out.println();
 
@@ -70,12 +74,12 @@ public class App3 {
     for(int i = 0; i < count; i ++)
     {
 
-      ReferrenceBoard brd = board[i]; 
+      ReferrenceBoard refb = board[i]; 
 
-      System.out.printf("%d, %s",brd.number[i],brd.description[i]);
+      System.out.printf("%d, %s,%s\n",refb.number,refb.description,timestamp);
 
     }
-    System.out.println(timestamp);
+      System.out.println();
   }
 }
 
