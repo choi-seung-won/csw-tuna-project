@@ -2,57 +2,81 @@ package csw.tuna.project;
 
 
 import java.util.Scanner;
+import csw.tuna.project.domain.Note;
+import csw.tuna.project.handler.DataHandler;
+import csw.tuna.project.handler.MemoHandler;
+import csw.tuna.project.handler.NoteHandler;
 
 public class App1 {
-  static Scanner ArrayScan = new Scanner(System.in);    
-  static Scanner scan = new Scanner(System.in);
-  static Scanner ok = new Scanner(System.in);
+  
+  public static Scanner S = new Scanner(System.in);
+  
+  public static Scanner ArrayScan = new Scanner(System.in);    
+  public static Scanner scan = new Scanner(System.in);
+  public static Scanner ok = new Scanner(System.in);
 
   
 
   static String loop;
   public static void main(String[] args) {
-    
     DataHandler.ArrayScan = ArrayScan;
     NoteHandler.scan = scan;
     MemoHandler.ok = ok;
     
     
+    
+    DataHandler dataHandler1 = new DataHandler();
+    NoteHandler noteHandler1 = new NoteHandler();
+    MemoHandler memoHandler1 = new MemoHandler();
+    
+    
     do {
       
       System.out.print("\n명령> ");
-      loop = ArrayScan.nextLine();
-
+      loop = S.nextLine();
       switch(loop) {
+        
         case "/Data/add" :
 
-          DataHandler.addData();
+          DataHandler.addData(dataHandler1);
 
           break;
 
         case "/Data/list" :
-          DataHandler.listData();
+          DataHandler.listData(dataHandler1);
           
           break;
           
+        case "/Data/detail" :
+          
+          DataHandler.detailData(dataHandler1);
+          break;
+          
         case "/Note/add" :
-          NoteHandler.addNote();
+          NoteHandler.addNote(noteHandler1);
           
           break;
           
         case "/Note/list" :
-          NoteHandler.listNote();
+          NoteHandler.listNote(noteHandler1);
           
           break;
           
+        case "/Note/detail" :
+          NoteHandler.detailNote(noteHandler1);
+          break;
+          
+          
         case "/Memo/add" :
-          MemoHandler.addMemo();
+          MemoHandler.addMemo(memoHandler1);
           break;
           
         case "/Memo/list" :
-          MemoHandler.listMemo();
+          MemoHandler.listMemo(memoHandler1);
           break;
-          
+        case "/Memo/detail":
+          MemoHandler.detailMemo(memoHandler1);
+          break;
           default:
             
             if(!loop.equalsIgnoreCase("quit")) {
@@ -64,7 +88,8 @@ public class App1 {
     
     ArrayScan.close();
     scan.close();
-
+    ok.close();
+    S.close();
   }
   
 }
